@@ -1,0 +1,28 @@
+/*
+  ________                                 __________.__        
+ /  _____/___________  ______ ______   ____\______   \__| ____  
+/   \  __\_  __ \__  \ \____ \\____ \_/ __ \|     ___/  |/ __ \ 
+\    \_\  \  | \// __ \|  |_> >  |_> >  ___/|    |   |  \  ___/ 
+ \______  /__|  (____  /   __/|   __/ \___  >____|   |__|\___  >
+        \/           \/|__|   |__|        \/                 \/ 
+*/
+
+body {
+    background-image: url('../img/404.jpg');
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 100% !important;
+    color: white;
+    font-family: 'Press Start 2P';
+}
+
+a {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+::selection {
+    background: #FFFFFF;
+}
