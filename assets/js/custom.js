@@ -21,7 +21,7 @@ const onKonamiCode = (cb) => { // https://stackoverflow.com/a/45576888
 
 // Easter Egg
 onKonamiCode(() => {
-  let audio = new Audio('assets/audio/kirbe.ogg'); // Audio removed in GitHub repository due to copyright reasons
+  let audio = new Audio('assets/audio/kirbe.ogg');
   audio.play();
   alert('código konami activado, haga clic en Aceptar para habilitar el modo Kirby');
   document.body.style.background = "url('assets/img/kirby.webp')";
