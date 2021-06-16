@@ -29,8 +29,8 @@ onKonamiCode(() => {
   document.title = 'modo kirby habilitado';
   document.getElementById('icon').src = 'assets/img/kirby.gif';
   document.getElementById('titletext').innerHTML = 'Kirby <3';
-  document.getElementById('kirby1').innerHTML = "Disfrutas de este huevo de Pascua? Destaca este repositorio en GitHub <a href='https://github.com/GrappePie' target=_blank'>aqui</a>!";
-  document.getElementById('kirby2').innerHTML = 'La pagina se actualizara automaticamente una vez que termine la cancion!';
+  document.getElementById('kirby1').innerHTML = "¿Disfrutas de este huevo de Pascua? ¡Destaca este repositorio en GitHub <a href='https://github.com/GrappePie' target=_blank'>aquí</a>!";
+  document.getElementById('kirby2').innerHTML = '¡La página se actualizará automáticamente una vez que termine la canción!';
   document.getElementById('content').style.display = 'none';
   audio.onended = () => { location.reload(); };
 });
