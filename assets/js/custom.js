@@ -168,7 +168,7 @@ $.get('https://api.db-ip.com/v2/free/self')
   $('.goToPage').text(goToPage);
   $('.goToProject').text(goToProject);
   $('.yeet').text(yeet);
-  $('#gang').data(gang,'rotate');
+  $('#gang').attr("data-rotate",gang);
   $('#volume_title').text(volume_title);
 })
 
