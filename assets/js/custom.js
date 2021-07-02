@@ -101,20 +101,34 @@ var Overworld_full_power = new Audio('assets/audio/Overworld (full power).ogg');
 var Overworld_pacefull = new Audio('assets/audio/Overworld (Peacefull).ogg');
 
 $(document).ready(function () {
-  
+  var timecheck = window.setInterval(function(){
+    let hours = new Date().getHours();
+    hours = (hours)%24;
+    let mid='am';
+    if(hours==0){ //At 00 hours we need to show 12 am
+    hours=12;
+    }
+    else if(hours>=12)
+    {
+    hours=hours%12;
+    mid='pm';
+    }
+  if(mid == 'am'){
+    Overworld_pacefull.muted = false;
+    Overworld_full_power.muted = true;
+  }else{
+    Overworld_full_power.muted = false;
+    Overworld_pacefull.muted = true;
+  }
+  }, 1000);
   Overworld_full_power.volume = 0.5;
   Overworld_pacefull.volume = 0.5;
   Overworld_full_power.loop = true;
   Overworld_pacefull.loop = true;
-  let now12 = new Date(),
-    now = new Date();
-
-    now12.setHours(0);
-  if(now.getTime() >= now12.getTime()){
-    Overworld_pacefull.play();
-  }else{
-    Overworld_full_power.play();
-  }
+  Overworld_full_power.play();
+  Overworld_full_power.muted = true;
+  Overworld_pacefull.play();
+  Overworld_pacefull.muted = true;
   $('#volume').mousemove(function(){
     Overworld_full_power.volume = this.value/100;
     Overworld_pacefull.volume = this.value/100;
@@ -211,16 +225,20 @@ const getCurrentSeason = () => {
 switch (getCurrentSeason()) {
   case 'winter':
     $('body').css("background","url('assets/img/seasons/winter.webp')");
+    $('#icon').attr("src",'assets/img/winter.gif');
     var confetti = Snow.init();
     break;
   case 'spring':
     $('body').css("background","url('assets/img/seasons/spring.webp')");
+    $('#icon').attr("src",'assets/img/spring.gif');
     break;
   case 'summer':
     $('body').css("background","url('assets/img/seasons/summer.webp')");
+    $('#icon').attr("src",'assets/img/summer.gif');
     break;
   case 'autumn':
     $('body').css("background","url('assets/img/seasons/autumn.webp')");
+    $('#icon').attr("src",'assets/img/autumn.gif');
     $('#titletext').css('color', 'white');
     $('#gang').css('color', 'white');
     $('#volume_title').css('color', 'white');
