@@ -11,7 +11,7 @@
 const onKonamiCode = (cb) => { // https://stackoverflow.com/a/45576888
   let input = '';
   let key = '38384040373937396665';
-  document.addEventListener('keydown', (e) => {
+  $(document).keydown(function(e){
     input += ('' + e.keyCode);
     if (input === key) return cb();
     if (!key.indexOf(input)) return;
@@ -81,24 +81,27 @@ var Snow = {
   }
 	
 };
-var alertKonamiCode, title, text1, text2 = "";
-var about = document.getElementById('about');
-var desc = document.getElementById('desc');
-var exp = document.getElementById('exp');
-var projects = document.getElementById('projects');
-var project_desc1 = document.getElementById('project-desc1');
-var project_desc2 = document.getElementById('project-desc2');
-var gang = document.getElementById('gang');
-var volume = document.getElementById('volume');
-var volume_title = document.getElementById('volume_title');
-var goToPage = document.getElementsByClassName('goToPage')[0];
-var goToProject = document.getElementsByClassName('goToProject')[0];
-var yeet = document.getElementsByClassName('yeet');
+var alertKonamiCode, 
+title,
+text1, 
+text2,
+about,
+desc,
+exp,
+projects,
+project_desc1,
+project_desc2,
+gang,
+volume_title,
+goToPage,
+goToProject,
+yeet;
+var volume = $('#volume');
+var Overworld_full_power = new Audio('assets/audio/Overworld (full power).ogg');
+var Overworld_pacefull = new Audio('assets/audio/Overworld (Peacefull).ogg');
 
-document.onreadystatechange = function () {
-  if (document.readyState == "interactive") {
-  let Overworld_full_power = new Audio('assets/audio/Overworld (full power).ogg');
-  let Overworld_pacefull = new Audio('assets/audio/Overworld (Peacefull).ogg');
+$(document).ready(function () {
+  
   Overworld_full_power.volume = 0.5;
   Overworld_pacefull.volume = 0.5;
   Overworld_full_power.loop = true;
@@ -112,68 +115,84 @@ document.onreadystatechange = function () {
   }else{
     Overworld_full_power.play();
   }
-  
-  volume.onchange = function(val){
-    Overworld_full_power.volume = val.target.valueAsNumber/100;
-    Overworld_pacefull.volume = val.target.valueAsNumber/100;
-  };
-  }
-}
-
-
-
-
-fetch('https://api.db-ip.com/v2/free/self')
-  .then(response => response.json())
-  .then(data => {
-    if(data.countryCode == 'MX'){
-      alertKonamiCode = "código konami activado, haga clic en Aceptar para habilitar el modo Kirby";
-      title = "modo kirby habilitado";
-      text1 = "¿Disfrutas de este huevo de Pascua? ¡Destaca este repositorio en GitHub <a href='https://github.com/GrappePie' target=_blank'>aquí</a>!";
-      text2 = "¡La página se actualizará automáticamente una vez que termine la canción!";
-      about.innerText = "Acerca de";
-      desc.innerHTML = "Hola! Me llamo Michael (conocido como GrappePie en línea), y estudié ingeniería en Sistemas Computacionales. Me gusta <a href='https://github.com/GrappePie' target='_blank'>programar</a>, la <a href='https://soundcloud.com/grappe-pie' target='_blank'>música</a>, los <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>videojuegos</a> y el <a href='https://myanimelist.net/animelist/GrappePie' target='_blank'>anime</a>!";
-      exp.innerHTML = "Conocimientos de programación";
-      projects.innerHTML = "Proyectos";
-      project_desc1.innerHTML = "Manual de Keep Talking and Nobody Explodes interactivo.";
-      project_desc2.innerHTML = "Bot de música para Discord.";
-      goToPage.text = "Ir a la pagina";
-      goToProject.text = "Ir al proyecto";
-      yeet.innerHTML = "Este sition es 10x mejor con Javascript activado.";
-      gang.dataset.rotate = '["Desarrollador de Videojuegos", "Desarrollador de Backend", "Desarrollador de Frontend", "Desarrollador Web"]';
-      volume_title.innerHTML = 'Volumen';
-    }else{
-      alertKonamiCode = "konami code activated, click ok to enable kirby mode";
-      title = "kirby mode enabled";
-      text1 = "Do you enjoy this Easter egg? Highlight this repository on GitHub <a href='https://github.com/GrappePie' target=_blank'> here </a>!";
-      text2 = "The page automatically updates once the song is over!";
-      about.innerText = "About";
-      desc.innerHTML = "Hi! My name is Michael (known as GrappePie online), and I studied Computer Systems engineering. I like <a href='https://github.com/GrappePie' target='_blank'>programing</a>, <a href = 'https://soundcloud.com/grappe-pie' target = ' _blank '>music</a>, <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>video games</a> and <a href =' https://myanimelist.net/animelist/GrappePie 'target =' _ blank '>anime</a>!";
-      exp.innerHTML = "Programming knowledge";
-      projects.innerHTML = "Projects";
-      project_desc1.innerHTML = "Interactive manual of Keep Talking and Nobody Explodes.";
-      project_desc2.innerHTML = "Music bot for Discord.";
-      goToPage.text = "Go to page";
-      goToProject.text = "Go to project";
-      yeet.innerHTML = "This site is 10x better with Javascript enabled.";
-      gang.dataset.rotate = '["Game Developer", "Backend Developer", "Frontend Developer", "Web Developer"]';
-      volume_title.innerHTML = 'Volume';
-    }
+  $('#volume').mousemove(function(){
+    Overworld_full_power.volume = this.value/100;
+    Overworld_pacefull.volume = this.value/100;
+  }).change(function(){
+    Overworld_full_power.volume = this.value/100;
+    Overworld_pacefull.volume = this.value/100;
   });
+});
+
+$.get('https://api.db-ip.com/v2/free/self')
+.done(function(data) {
+  if(data.countryCode == 'MX'){
+    alertKonamiCode = "código konami activado, haga clic en Aceptar para habilitar el modo Kirby";
+    title = "modo kirby habilitado";
+    text1 = "¿Disfrutas de este huevo de Pascua? ¡Destaca este repositorio en GitHub <a href='https://github.com/GrappePie' target=_blank'>aquí</a>!";
+    text2 = "¡La página se actualizará automáticamente una vez que termine la canción!";
+    about = "Acerca de";
+    desc = "Hola! Me llamo Michael (conocido como GrappePie en línea), y estudié ingeniería en Sistemas Computacionales. Me gusta <a href='https://github.com/GrappePie' target='_blank'>programar</a>, la <a href='https://soundcloud.com/grappe-pie' target='_blank'>música</a>, los <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>videojuegos</a> y el <a href='https://myanimelist.net/animelist/GrappePie' target='_blank'>anime</a>!";
+    exp = "Conocimientos de programación";
+    projects = "Proyectos";
+    project_desc1 = "Manual de Keep Talking and Nobody Explodes interactivo.";
+    project_desc2 = "Bot de música para Discord.";
+    goToPage = "Ir a la pagina";
+    goToProject = "Ir al proyecto";
+    yeet = "Este sition es 10x mejor con Javascript activado.";
+    gang = '["Desarrollador de Videojuegos", "Desarrollador de Backend", "Desarrollador de Frontend", "Desarrollador Web"]';
+    volume_title = 'Volumen';
+  }else{
+    alertKonamiCode = "konami code activated, click ok to enable kirby mode";
+    title = "kirby mode enabled";
+    text1 = "Do you enjoy this Easter egg? Highlight this repository on GitHub <a href='https://github.com/GrappePie' target=_blank'> here </a>!";
+    text2 = "The page automatically updates once the song is over!";
+    about = "About";
+    desc = "Hi! My name is Michael (known as GrappePie online), and I studied Computer Systems engineering. I like <a href='https://github.com/GrappePie' target='_blank'>programing</a>, <a href = 'https://soundcloud.com/grappe-pie' target = ' _blank '>music</a>, <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>video games</a> and <a href =' https://myanimelist.net/animelist/GrappePie 'target =' _ blank '>anime</a>!";
+    exp = "Programming knowledge";
+    projects = "Projects";
+    project_desc1 = "Interactive manual of Keep Talking and Nobody Explodes.";
+    project_desc2 = "Music bot for Discord.";
+    goToPage = "Go to page";
+    goToProject = "Go to project";
+    yeet = "This site is 10x better with Javascript enabled.";
+    gang = '["Game Developer", "Backend Developer", "Frontend Developer", "Web Developer"]';
+    volume_title = 'Volume';
+  }
+  $('#about').text(about);
+  $('#desc').html(desc);
+  $('#exp').text(exp);
+  $('#projects').text(projects);
+  $('#project-desc1').html(project_desc1);
+  $('#project-desc2').html(project_desc2);
+  $('.goToPage').text(goToPage);
+  $('.goToProject').text(goToProject);
+  $('.yeet').text(yeet);
+  $('#gang').data(gang,'rotate');
+  $('#volume_title').text(volume_title);
+})
 
 // Easter Egg
 onKonamiCode(() => {
+  Overworld_full_power.muted = true;
+  Overworld_pacefull.muted = true;
   let audio = new Audio('assets/audio/kirbe.ogg');
+  audio.volume = 0.5;
   audio.play();
+  $('#volume').mousemove(function(){
+    audio.volume = this.value/100;
+  }).change(function(){
+    audio.volume = this.value/100;
+  });
   alert(alertKonamiCode);
-  document.body.style.background = "url('assets/img/kirby.webp')";
-  document.body.style.color = 'white';
-  document.title = title;
-  document.getElementById('icon').src = 'assets/img/kirby.gif';
-  document.getElementById('titletext').innerHTML = 'Kirby <3';
-  document.getElementById('kirby1').innerHTML = text1;
-  document.getElementById('kirby2').innerHTML = text2;
-  document.getElementById('content').style.display = 'none';
+  $('body').css("background","url('assets/img/kirby.webp')");
+  $('body').css("color",'white');
+  $('#about').text(title);
+  $('#icon').attr("src",'assets/img/kirby.gif');
+  $('#titletext').html('Kirby <3');
+  $('#kirby1').html(text1);
+  $('#kirby2').html(text2);
+  $('#content').hide();
   audio.onended = () => { location.reload(); };
 });
 
@@ -191,19 +210,20 @@ const getCurrentSeason = () => {
 
 switch (getCurrentSeason()) {
   case 'winter':
-    document.body.style.background = "url('assets/img/seasons/winter.webp')";
+    $('body').css("background","url('assets/img/seasons/winter.webp')");
     var confetti = Snow.init();
     break;
   case 'spring':
-    document.body.style.background = "url('assets/img/seasons/spring.webp')";
+    $('body').css("background","url('assets/img/seasons/spring.webp')");
     break;
   case 'summer':
-    document.body.style.background = "url('assets/img/seasons/summer.webp')";
+    $('body').css("background","url('assets/img/seasons/summer.webp')");
     break;
   case 'autumn':
-    document.body.style.background = "url('assets/img/seasons/autumn.webp')";
-    document.getElementById('titletext').setAttribute('style', 'color: white !important;');
-    document.getElementById('gang').setAttribute('style', 'color: white !important;');
+    $('body').css("background","url('assets/img/seasons/autumn.webp')");
+    $('#titletext').css('color', 'white');
+    $('#gang').css('color', 'white');
+    $('#volume_title').css('color', 'white');
     break;
 }
 
