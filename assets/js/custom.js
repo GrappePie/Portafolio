@@ -99,6 +99,8 @@ yeet;
 var volume = $('#volume');
 var Overworld_full_power = new Audio('assets/audio/Overworld (full power).ogg');
 var Overworld_pacefull = new Audio('assets/audio/Overworld (Peacefull).ogg');
+Overworld_full_power.muted = true;
+Overworld_pacefull.muted = true;
 
 $(document).ready(function () {
   var timecheck = window.setInterval(function(){
