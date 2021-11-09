@@ -95,7 +95,8 @@ gang,
 volume_title,
 goToPage,
 goToProject,
-yeet;
+yeet,
+contry;
 var volume = $('#volume');
 var Overworld_full_power = new Audio('assets/audio/Overworld (full power).ogg');
 var Overworld_pacefull = new Audio('assets/audio/Overworld (Peacefull).ogg');
@@ -127,9 +128,9 @@ $(document).ready(function () {
   Overworld_pacefull.volume = 0.5;
   Overworld_full_power.loop = true;
   Overworld_pacefull.loop = true;
-  Overworld_full_power.play();
+  setTimeout(function(){ Overworld_full_power.play(); }, 5000);
   Overworld_full_power.muted = true;
-  Overworld_pacefull.play();
+  setTimeout(function(){ Overworld_pacefull.play(); }, 5000);
   Overworld_pacefull.muted = true;
   $('#volume').mousemove(function(){
     Overworld_full_power.volume = this.value/100;
@@ -139,54 +140,61 @@ $(document).ready(function () {
     Overworld_pacefull.volume = this.value/100;
   });
 });
+if(localStorage.getItem('countryCode')!=null){
+  contry = localStorage.getItem('countryCode');
+}else{
+  $.get('https://api.db-ip.com/v2/free/self')
+  .done(function(data) {
+    localStorage.setItem('countryCode', data.countryCode);
+    contry = localStorage.getItem('countryCode');
+  })
+}
 
-$.get('https://api.db-ip.com/v2/free/self')
-.done(function(data) {
-  if(data.countryCode == 'MX'){
-    alertKonamiCode = "código konami activado, haga clic en Aceptar para habilitar el modo Kirby";
-    title = "modo kirby habilitado";
-    text1 = "¿Disfrutas de este huevo de Pascua? ¡Destaca este repositorio en GitHub <a href='https://github.com/GrappePie' target=_blank'>aquí</a>!";
-    text2 = "¡La página se actualizará automáticamente una vez que termine la canción!";
-    about = "Acerca de";
-    desc = "Hola! Me llamo Michael (conocido como GrappePie en línea), y estudié ingeniería en Sistemas Computacionales. Me gusta <a href='https://github.com/GrappePie' target='_blank'>programar</a>, la <a href='https://soundcloud.com/grappe-pie' target='_blank'>música</a>, los <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>videojuegos</a> y el <a href='https://myanimelist.net/animelist/GrappePie' target='_blank'>anime</a>!";
-    exp = "Conocimientos de programación";
-    projects = "Proyectos";
-    project_desc1 = "Manual de Keep Talking and Nobody Explodes interactivo.";
-    project_desc2 = "Bot de música para Discord.";
-    goToPage = "Ir a la pagina";
-    goToProject = "Ir al proyecto";
-    yeet = "Este sition es 10x mejor con Javascript activado.";
-    gang = '["Desarrollador de Videojuegos", "Desarrollador de Backend", "Desarrollador de Frontend", "Desarrollador Web"]';
-    volume_title = 'Volumen';
-  }else{
-    alertKonamiCode = "konami code activated, click ok to enable kirby mode";
-    title = "kirby mode enabled";
-    text1 = "Do you enjoy this Easter egg? Highlight this repository on GitHub <a href='https://github.com/GrappePie' target=_blank'> here </a>!";
-    text2 = "The page automatically updates once the song is over!";
-    about = "About";
-    desc = "Hi! My name is Michael (known as GrappePie online), and I studied Computer Systems engineering. I like <a href='https://github.com/GrappePie' target='_blank'>programing</a>, <a href = 'https://soundcloud.com/grappe-pie' target = ' _blank '>music</a>, <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>video games</a> and <a href =' https://myanimelist.net/animelist/GrappePie 'target =' _ blank '>anime</a>!";
-    exp = "Programming knowledge";
-    projects = "Projects";
-    project_desc1 = "Interactive manual of Keep Talking and Nobody Explodes.";
-    project_desc2 = "Music bot for Discord.";
-    goToPage = "Go to page";
-    goToProject = "Go to project";
-    yeet = "This site is 10x better with Javascript enabled.";
-    gang = '["Game Developer", "Backend Developer", "Frontend Developer", "Web Developer"]';
-    volume_title = 'Volume';
-  }
-  $('#about').text(about);
-  $('#desc').html(desc);
-  $('#exp').text(exp);
-  $('#projects').text(projects);
-  $('#project-desc1').html(project_desc1);
-  $('#project-desc2').html(project_desc2);
-  $('.goToPage').text(goToPage);
-  $('.goToProject').text(goToProject);
-  $('.yeet').text(yeet);
-  $('#gang').attr("data-rotate",gang);
-  $('#volume_title').text(volume_title);
-})
+
+if(contry == 'MX'){
+  alertKonamiCode = "código konami activado, haga clic en Aceptar para habilitar el modo Kirby";
+  title = "modo kirby habilitado";
+  text1 = "¿Disfrutas de este huevo de Pascua? ¡Destaca este repositorio en GitHub <a href='https://github.com/GrappePie' target=_blank'>aquí</a>!";
+  text2 = "¡La página se actualizará automáticamente una vez que termine la canción!";
+  about = "Acerca de";
+  desc = "Hola! Me llamo Michael (conocido como GrappePie en línea), y estudié ingeniería en Sistemas Computacionales. Me gusta <a href='https://github.com/GrappePie' target='_blank'>programar</a>, la <a href='https://soundcloud.com/grappe-pie' target='_blank'>música</a>, los <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>videojuegos</a> y el <a href='https://myanimelist.net/animelist/GrappePie' target='_blank'>anime</a>!";
+  exp = "Conocimientos de programación";
+  projects = "Proyectos";
+  project_desc1 = "Manual de Keep Talking and Nobody Explodes interactivo.";
+  project_desc2 = "Bot de música para Discord.";
+  goToPage = "Ir a la pagina";
+  goToProject = "Ir al proyecto";
+  yeet = "Este sition es 10x mejor con Javascript activado.";
+  gang = '["Desarrollador de Videojuegos", "Desarrollador de Backend", "Desarrollador de Frontend", "Desarrollador Web"]';
+  volume_title = 'Volumen';
+}else{
+  alertKonamiCode = "konami code activated, click ok to enable kirby mode";
+  title = "kirby mode enabled";
+  text1 = "Do you enjoy this Easter egg? Highlight this repository on GitHub <a href='https://github.com/GrappePie' target=_blank'> here </a>!";
+  text2 = "The page automatically updates once the song is over!";
+  about = "About";
+  desc = "Hi! My name is Michael (known as GrappePie online), and I studied Computer Systems engineering. I like <a href='https://github.com/GrappePie' target='_blank'>programing</a>, <a href = 'https://soundcloud.com/grappe-pie' target = ' _blank '>music</a>, <a href='https://steamcommunity.com/id/grappepie/' target='_blank'>video games</a> and <a href =' https://myanimelist.net/animelist/GrappePie 'target =' _ blank '>anime</a>!";
+  exp = "Programming knowledge";
+  projects = "Projects";
+  project_desc1 = "Interactive manual of Keep Talking and Nobody Explodes.";
+  project_desc2 = "Music bot for Discord.";
+  goToPage = "Go to page";
+  goToProject = "Go to project";
+  yeet = "This site is 10x better with Javascript enabled.";
+  gang = '["Game Developer", "Backend Developer", "Frontend Developer", "Web Developer"]';
+  volume_title = 'Volume';
+}
+$('#about').text(about);
+$('#desc').html(desc);
+$('#exp').text(exp);
+$('#projects').text(projects);
+$('#project-desc1').html(project_desc1);
+$('#project-desc2').html(project_desc2);
+$('.goToPage').text(goToPage);
+$('.goToProject').text(goToProject);
+$('.yeet').text(yeet);
+$('#gang').attr("data-rotate",gang);
+$('#volume_title').text(volume_title);
 
 // Easter Egg
 onKonamiCode(() => {
