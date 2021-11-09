@@ -128,7 +128,7 @@ $(document).ready(function () {
   Overworld_pacefull.volume = 0.5;
   Overworld_full_power.loop = true;
   Overworld_pacefull.loop = true;
-  $("body").click();
+  setTimeout(function(){ $("body").click(); }, 1000);
   setTimeout(function(){ Overworld_full_power.play(); }, 2000);
   Overworld_full_power.muted = true;
   setTimeout(function(){ Overworld_pacefull.play(); }, 2000);
