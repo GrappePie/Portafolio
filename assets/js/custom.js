@@ -228,6 +228,7 @@ switch (getCurrentSeason()) {
   case 'winter':
     $('body').css("background","url('assets/img/seasons/winter.webp')");
     $('#icon').attr("src",'assets/img/winter.gif');
+    $('#ghost').hide();
     var confetti = Snow.init();
     break;
   case 'spring':
@@ -237,12 +238,14 @@ switch (getCurrentSeason()) {
   case 'summer':
     $('body').css("background","url('assets/img/seasons/summer.webp')");
     $('#icon').attr("src",'assets/img/summer.gif');
+    $('#ghost').hide();
     break;
   case 'autumn':
     $('body').css("background","url('assets/img/seasons/autumn.webp')");
     $('#icon').attr("src",'assets/img/autumn.gif');
     $('#titletext').css('color', 'white');
     $('#gang').css('color', 'white');
+    $('#ghost').show();
     $('#volume_title').css('color', 'white');
     break;
 }

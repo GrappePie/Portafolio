@@ -63,3 +63,114 @@ canvas{
       top: 15;
       position: absolute;
   }
+  #ghost {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    z-index: 0;
+    top: 100px;
+    left: 0;
+    -webkit-animation: float 10s infinite, wobble 2s infinite;
+            animation: float 10s infinite, wobble 2s infinite;
+  }
+  #ghost .hidden {
+    display: none;
+  }
+  #ghost .hidden, #ghost .visible {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+  #ghost .hidden .pixel, #ghost .visible .pixel {
+    width: 10px;
+    height: 10px;
+    float: left;
+  }
+  #ghost .hidden .b, #ghost .visible .b {
+    background-color: #000;
+  }
+  #ghost .hidden .g, #ghost .visible .g {
+    background-color: #eee;
+  }
+  #ghost .hidden .p, #ghost .visible .p {
+    background-color: #ff69b4;
+  }
+  #ghost .hidden .r, #ghost .visible .r {
+    background-color: #ff1e28;
+  }
+  #ghost .hidden .t, #ghost .visible .t {
+    background-color: transparent;
+  }
+  #ghost .hidden .w, #ghost .visible .w {
+    background-color: #fff;
+  }
+  #ghost:hover {
+    -webkit-animation-play-state: paused;
+            animation-play-state: paused;
+  }
+  #ghost:hover .hidden {
+    display: block;
+  }
+  #ghost:hover .visible {
+    display: none;
+  }
+  @-webkit-keyframes float {
+    0% {
+      left: 0;
+      transform: scaleX(1);
+    }
+    48% {
+      left: calc(100% - 160px);
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(-1);
+    }
+    98% {
+      left: 0;
+      transform: scaleX(-1);
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      left: 0;
+      transform: scaleX(1);
+    }
+    48% {
+      left: calc(100% - 160px);
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(-1);
+    }
+    98% {
+      left: 0;
+      transform: scaleX(-1);
+    }
+  }
+  @-webkit-keyframes wobble {
+    0% {
+      top: 0;
+    }
+    50% {
+      top: -50px;
+    }
+    100% {
+      top: 0;
+    }
+  }
+  @keyframes wobble {
+    0% {
+      top: 0;
+    }
+    50% {
+      top: -50px;
+    }
+    100% {
+      top: 0;
+    }
+  }
