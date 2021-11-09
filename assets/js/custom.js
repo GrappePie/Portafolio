@@ -124,8 +124,8 @@ $(document).ready(function () {
     Overworld_pacefull.muted = true;
   }
   }, 1000);
-  Overworld_full_power.volume = 0.5;
-  Overworld_pacefull.volume = 0.5;
+  Overworld_full_power.volume = 0.15;
+  Overworld_pacefull.volume = 0.15;
   Overworld_full_power.loop = true;
   Overworld_pacefull.loop = true;
   setTimeout(function(){ $("body").click(); }, 1000);
